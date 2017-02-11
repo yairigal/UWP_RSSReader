@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class Class1
+    public class BaseClass
     {
+        IDAL dal;
+        public BaseClass()
+        {
+            dal = Factory.getFactoryDAL();
+        }
     }
 }

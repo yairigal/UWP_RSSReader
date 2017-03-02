@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL;
 
-namespace DAL
+namespace BL
 {
     public class BaseClass
     {
-        IDAL dal;
+        protected IDAL dal;
         public BaseClass()
         {
-            dal = Factory.getFactoryDAL();
+            dal = DAL.Factory.getFactoryDAL();
         }
     }
 }

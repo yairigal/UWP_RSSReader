@@ -107,7 +107,6 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseClass.cs" />
     <Compile Include="DAL.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="IDAL.cs" />

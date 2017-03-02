@@ -1,0 +1,12 @@
+DAL - 
+	save a rss feed
+	get Rss feed by id
+	get rss feeds by title
+	
+BL - 
+	search Rss by title.
+
+
+PL - 
+	
+	 

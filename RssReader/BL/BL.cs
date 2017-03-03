@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
+namespace PL
 {
     public class BL: BaseClass , IBL
     {
-        private BL() { }
     }
 }

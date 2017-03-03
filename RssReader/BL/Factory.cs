@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
+namespace PL
 {
-    class Factory
+    public class Factory
     {
         static IBL instance = null;
         public static Func<IBL> factory = getBL;

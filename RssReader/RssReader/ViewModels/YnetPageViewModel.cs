@@ -13,9 +13,46 @@ namespace RssReader.ViewModels
         private YnetPageModel model;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public YnetPageViewModel()
+        private String link = "https://google.com";
+        private bool isLoadingShown = true;
+
+        public string Link
         {
+            get
+            {
+                return link;
+            }
+
+            set
+            {
+                link = value;
+            }
+        }
+
+        public bool IsLoadingShown
+        {
+            get
+            {
+                return isLoadingShown;
+            }
+
+            set
+            {
+                isLoadingShown = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsLoadingShown"));
+            }
+        }
+
+        public YnetPageViewModel() { }
+        public YnetPageViewModel(string currentArticleLink)
+        {
+            this.Link = currentArticleLink;
             this.model = new YnetPageModel(this);
         }
+
+        public void dismissLoading(object caller,EventArgs args) =>
+
+            IsLoadingShown = false;
+
     }
 }

@@ -17,5 +17,10 @@ namespace PL.Models
         {
             this.vm = vm;
         }
+
+        public void search(string query)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

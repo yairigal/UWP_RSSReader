@@ -21,12 +21,12 @@ namespace RssReader.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class YnetPage : Page
+    public sealed partial class SearchPage : Page
     {
-        public YnetPage(string currentArticleLink)
+        public SearchPage()
         {
             this.InitializeComponent();
-            this.DataContext = new YnetPageViewModel(currentArticleLink);
+            this.DataContext = new SearchPageViewModel();
         }
     }
 }

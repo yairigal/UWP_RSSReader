@@ -1,0 +1,21 @@
+﻿<Page
+    x:Class="RssReader.Views.SearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RssReader.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:PL.ViewModels"
+    xmlns:viewModels1="using:RssReader.ViewModels"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.DataContext>
+            <viewModels1:SearchPageViewModel/>
+        </Grid.DataContext>
+        <AutoSuggestBox HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Text="{Binding Path=Query}" Height="32" Width="408">
+            <AutoSuggestBox Height="100" Width="100"/>
+        </AutoSuggestBox>
+        <Button FontFamily="Segoe MDL2 Assets" Content="&#xE094;" HorizontalAlignment="Left" Command="{Binding Search}" Margin="423,39,0,0" VerticalAlignment="Top" Height="32"/>
+    </Grid>
+</Page>

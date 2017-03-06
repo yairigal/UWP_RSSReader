@@ -2,43 +2,61 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BE;
+using PL.ViewModels;
 
 namespace RssReader.ViewModels
 {
-    class RssListPageViewModel
+    class RssListPageViewModel : INotifyPropertyChanged
     {
-        ObservableCollection<string> list;
+        ObservableCollection<RSSObject> list;
         private RssListPageModel model;
+        public static Func<string, object> searchExecute;
+
+        private RSSObject currentItemSelected;
 
         public RssListPageViewModel()
         {
             this.model = new RssListPageModel(this);
-            //list = model.getRssList();
-            TEST_initList();
-           
+            searchExecute+= SearchExecute;
+            list = model.getRssObjects("Ynet");
+            //TEST_initList();
+            model.saveRssList(list);
         }
 
-        public ObservableCollection<string> List
+        private object SearchExecute(string s)
+        {
+            list = model.search(s);
+            return null;
+        }
+
+        public ObservableCollection<RSSObject> List
         {
             get
             {
                 return list;
             }
+        }
 
-            set
-            {
-                list = value;
+        public RSSObject CurrentItemSelected
+        {
+            get { return currentItemSelected; }
+            set { currentItemSelected = value;
+                StartPageViewModel.articleSelected(currentItemSelected);
             }
         }
 
         private void TEST_initList()
         {
-            List = new ObservableCollection<string>();
-            List.Add("Yair");
-            List.Add("Yaron");
+            list = new ObservableCollection<RSSObject>();
+            List.Add(new RSSObject("חדשות","חדשות","https://google.com",null));
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -8,6 +8,7 @@ using PL.Models;
 using RssReader.Models;
 using Windows.UI.Xaml.Controls;
 using System.Windows.Input;
+using BE;
 using RssReader.Views;
 
 namespace PL.ViewModels
@@ -17,9 +18,12 @@ namespace PL.ViewModels
         StartPageModel model;
         private ICommand toggleBtnCmd;
         private ICommand navigateToPage;
+        private ICommand navigateToSearch;
         private bool isPaneOpen;
         private Page currentDisplayedPage;
-        private Page listPage;
+        private RssListPage listPage;
+        private RSSObject currentArticle = null;
+        public static Func<RSSObject,object> articleSelected ;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand ToggleBtnCmd
@@ -31,6 +35,7 @@ namespace PL.ViewModels
                 return toggleBtnCmd;
             }
         }
+
         public bool IsPaneOpen
         {
             get
@@ -60,15 +65,10 @@ namespace PL.ViewModels
 
         public ICommand NavigateToPage
         {
-            get
-            {
-                if (navigateToPage == null)
-                    navigateToPage = new Command(()=>Navigate(new YnetPage()), () => true);
-                return navigateToPage;
-            }
+            get { return navigateToPage ?? (navigateToPage = new Command(() => Navigate(new YnetPage(CurrentArticle?.Link)), () => true)); }
         }
 
-        public Page ListPage
+        public RssListPage ListPage
         {
             get
             {
@@ -84,20 +84,46 @@ namespace PL.ViewModels
             }
         }
 
+        public RSSObject CurrentArticle
+        {
+            get
+            {
+                return currentArticle;
+            }
+
+            set
+            {
+                currentArticle = value;
+                Navigate(new YnetPage(currentArticle.Link));
+            }
+        }
+
+        public ICommand NavigateToSearch
+        {
+            get
+            {
+                if(navigateToSearch == null)
+                    navigateToSearch = new Command(()=>Navigate(new SearchPage()),()=>true);
+                return navigateToSearch;
+            }
+        }
+
         public StartPageViewModel()
         {
             this.model = new StartPageModel(this);
             isPaneOpen = false;
+            articleSelected += onArticleSelected;
+        }
+        private object onArticleSelected(RSSObject obRssObject)
+        {
+            CurrentArticle = obRssObject;
+            return null;
         }
 
-        private void TogglePane()
-        {
+        private void TogglePane() =>
             IsPaneOpen = !IsPaneOpen;
-        }
 
-        private void Navigate(Page page)
-        {
+        private void Navigate(Page page) => 
             CurrentDisplayedPage = page;
-        }
     }
 }

@@ -102,6 +102,7 @@
     <Compile Include="Models\YnetPageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\RssListPageViewModel.cs" />
+    <Compile Include="ViewModels\searchPageViewModel.cs" />
     <Compile Include="ViewModels\StartPageViewModel.cs" />
     <Compile Include="ViewModels\YnetPageViewModel.cs" />
     <Compile Include="Views\RssItem.xaml.cs">
@@ -109,6 +110,9 @@
     </Compile>
     <Compile Include="Views\RssListPage.xaml.cs">
       <DependentUpon>RssListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\searchPage.xaml.cs">
+      <DependentUpon>searchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
@@ -140,6 +144,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BE\BE.csproj">
+      <Project>{a5932d91-6006-45cd-a9ff-1106db1bfe76}</Project>
+      <Name>BE</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BL\BL.csproj">
       <Project>{04c4a5f3-0c5c-46bb-9754-7ee71037e9b9}</Project>
       <Name>BL</Name>
@@ -152,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RssListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\searchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

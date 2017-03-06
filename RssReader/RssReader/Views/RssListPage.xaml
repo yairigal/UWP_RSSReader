@@ -13,6 +13,14 @@
             <ViewModels:RssListPageViewModel/>
         </StackPanel.DataContext>
         <TextBlock Text="Ynet - חדשות" FontSize="15" Height="26" Margin="10,0,0,0"/>
-        <ListBox  ItemsSource="{Binding Path=List}"/>
+        <ListBox  ItemsSource="{Binding Path=List ,Mode=TwoWay}" SelectedItem="{Binding CurrentItemSelected, Mode=TwoWay}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Title}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </StackPanel>
 </Page>

@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="BaseClass.cs" />
     <Compile Include="Models\Command.cs" />
+    <Compile Include="Models\CommandTest.cs" />
     <Compile Include="Models\RssListPageModel.cs" />
     <Compile Include="Models\StartPageModel.cs" />
     <Compile Include="Models\YnetPageModel.cs" />

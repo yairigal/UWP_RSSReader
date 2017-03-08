@@ -13,9 +13,9 @@
         <Grid.DataContext>
             <viewModels1:SearchPageViewModel/>
         </Grid.DataContext>
-        <AutoSuggestBox HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Text="{Binding Path=Query}" Height="32" Width="408">
+        <AutoSuggestBox x:Name="Box" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Text="{Binding Path=Query,Mode=TwoWay}" Height="32" Width="408">
             <AutoSuggestBox Height="100" Width="100"/>
         </AutoSuggestBox>
-        <Button FontFamily="Segoe MDL2 Assets" Content="&#xE094;" HorizontalAlignment="Left" Command="{Binding Search}" Margin="423,39,0,0" VerticalAlignment="Top" Height="32"/>
+        <Button FontFamily="Segoe MDL2 Assets" Content="&#xE094;" HorizontalAlignment="Left" Command="{Binding Path=Search,Mode=TwoWay}" CommandParameter="{Binding Text, ElementName=Box}" Margin="423,39,0,0" VerticalAlignment="Top" Height="32"/>
     </Grid>
 </Page>

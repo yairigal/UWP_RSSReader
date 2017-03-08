@@ -65,7 +65,6 @@ namespace BE
             }
         }
 
-
         public RSSObject(string title = "",string des = "",string link = "" ,List<String> tags = null)
         {
             this.title = title;
@@ -75,6 +74,7 @@ namespace BE
                 this.tags = new List<string>();
             else
                 this.tags = tags;
+
         }
     }
 }

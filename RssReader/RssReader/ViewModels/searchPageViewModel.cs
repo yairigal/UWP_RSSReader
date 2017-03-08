@@ -26,7 +26,7 @@ namespace RssReader.ViewModels
             set
             {
                 query = value;
-                PropertyChanged.Invoke(this,new PropertyChangedEventArgs("Query"));
+                PropertyChanged?.Invoke(this,new PropertyChangedEventArgs("Query"));
             }
         }
 
@@ -35,7 +35,7 @@ namespace RssReader.ViewModels
             get
             {
                 if(search == null)
-                    search = new Command(()=>RssListPageViewModel.searchExecute(query),()=>query != "");
+                    search = new CommandTest(()=>RssListPageViewModel.searchExecute(query));
                 return search;
             }
         }

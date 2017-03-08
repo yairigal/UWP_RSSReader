@@ -37,19 +37,27 @@ namespace DAL
 
         public List<RSSObject> getRss(string title)
         {
+            WildcardQuery q = new WildcardQuery()
+            {
+                Field = "title",
+                Value = "*"+title.Reverse()+"*",
+            };
+
             QueryContainer query = new TermQuery
             {
                 Field = "Title",
                 Value = title,
             };
 
+            RawQuery query2 = new RawQuery(@"GET _search?size=200{" + "query" + ": {" + "wildcard" + ": { " + "title" + ": {" + "value" + ":" + "*" + title + "*" + "}}}}");
+
             var searchRequest = new SearchRequest
             {
-                Query = query,
-                From = 100,
+                Query = query2,
+                Size = 200
             };
 
-            var result =  client.Search<RSSObject>(searchRequest);
+            var result =  client.Search<RSSObject>(s=>s.Query(s1=>s1.Wildcard(s2=>s2.Field(s3=>s3.Title).Value("*"+title+"*"))));
             return result.Documents.ToList();
         }
 
@@ -57,7 +65,7 @@ namespace DAL
         {
             try
             {
-                client.IndexAsync(obj);
+                client.IndexAsync(obj,r=>r.Id(obj.Link.GetHashCode()));
             }
             catch (Exception e)
             {

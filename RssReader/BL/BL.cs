@@ -8,7 +8,7 @@ using BE;
 
 namespace PL
 {
-    public class BL: BaseClass , IBL
+    public class BL : BaseClass, IBL
     {
         public ObservableCollection<RSSObject> getRssFeed()
         {
@@ -17,8 +17,13 @@ namespace PL
 
         public void saveRssObjects(ObservableCollection<RSSObject> list)
         {
-            foreach (var rss in list)
-                dal.saveRSS(rss);   
+            Task.Run(() =>
+            {
+                foreach (var rss in list)
+                    dal.saveRSSAsync(rss);
+
+            });
+
         }
 
         public ObservableCollection<RSSObject> SearchRssTitle(string title)

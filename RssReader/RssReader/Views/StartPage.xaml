@@ -38,7 +38,7 @@
                         <ColumnDefinition Width="20*"/>
                         <ColumnDefinition Width="39*"/>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Background="AliceBlue">
+                    <Grid Grid.Column="0">
                         <Frame x:Name="ListFrame" Content="{Binding Path=ListPage}"/>
                     </Grid>
                     <Frame x:Name="ContentFrame" Content="{Binding Path=CurrentDisplayedPage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>

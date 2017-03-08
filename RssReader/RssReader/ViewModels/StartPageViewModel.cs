@@ -65,7 +65,11 @@ namespace PL.ViewModels
 
         public ICommand NavigateToPage
         {
-            get { return navigateToPage ?? (navigateToPage = new Command(() => Navigate(new YnetPage(CurrentArticle?.Link)), () => true)); }
+            get { return navigateToPage ?? (navigateToPage = new Command(() =>
+            {
+                Navigate(new YnetPage(CurrentArticle?.Link));
+                ListPage = new RssListPage();
+            }, () => true)); }
         }
 
         public RssListPage ListPage
@@ -113,6 +117,7 @@ namespace PL.ViewModels
             this.model = new StartPageModel(this);
             isPaneOpen = false;
             articleSelected += onArticleSelected;
+            currentDisplayedPage = new YnetPage("");
         }
         private object onArticleSelected(RSSObject obRssObject)
         {

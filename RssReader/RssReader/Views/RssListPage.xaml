@@ -6,21 +6,27 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModels="using:RssReader.ViewModels"
     x:Class="RssReader.Views.RssListPage"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Height="711" Width="866">
 
-    <StackPanel Orientation="Vertical" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel.DataContext>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="227*"/>
+        </Grid.RowDefinitions>
+        <Grid.DataContext>
             <ViewModels:RssListPageViewModel/>
-        </StackPanel.DataContext>
-        <TextBlock Text="Ynet - חדשות" FontSize="15" Height="26" Margin="10,0,0,0"/>
-        <ListBox  ItemsSource="{Binding Path=List ,Mode=TwoWay}" SelectedItem="{Binding CurrentItemSelected, Mode=TwoWay}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Title}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </StackPanel>
+        </Grid.DataContext>
+        <TextBlock Text="Ynet - חדשות" FontSize="15" Grid.Row="0"/>
+        <ScrollViewer Grid.Row="1">
+            <ListBox ItemsSource="{Binding Path=List ,Mode=TwoWay}" SelectedItem="{Binding CurrentItemSelected, Mode=TwoWay}" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Title}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+    </Grid>
 </Page>

@@ -13,7 +13,7 @@ namespace DAL
         //read
         List<RSSObject> getRss(string title);
         //create
-        bool saveRSS(RSSObject obj);
+        void saveRSSAsync(RSSObject obj);
 
         bool deleteRSS(RSSObject obj);
 

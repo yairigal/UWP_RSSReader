@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BE;
 
 namespace RssReader.ViewModels
 {
@@ -13,7 +14,8 @@ namespace RssReader.ViewModels
         private YnetPageModel model;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private String link = "https://google.com";
+        private String link;
+        public static Func<RSSObject, object> onArticleSelected;
         private bool isLoadingShown = true;
 
         public string Link
@@ -26,6 +28,7 @@ namespace RssReader.ViewModels
             set
             {
                 link = value;
+                PropertyChanged?.Invoke(this,new PropertyChangedEventArgs("Link"));
             }
         }
 
@@ -44,10 +47,18 @@ namespace RssReader.ViewModels
         }
 
         public YnetPageViewModel() { }
-        public YnetPageViewModel(string currentArticleLink)
+
+        public YnetPageViewModel(string currentArticleLink = "")
         {
             this.Link = currentArticleLink;
             this.model = new YnetPageModel(this);
+            onArticleSelected += OnArticleSelected;
+        }
+
+        private object OnArticleSelected(RSSObject rssObject)
+        {
+            Link = rssObject.Link;
+            return null;
         }
 
         public void dismissLoading(object caller,EventArgs args) =>

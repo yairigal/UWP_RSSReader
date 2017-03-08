@@ -17,7 +17,6 @@ namespace RssReader.ViewModels
         ObservableCollection<RSSObject> list;
         private RssListPageModel model;
         public static Func<string, object> searchExecute;
-
         private RSSObject currentItemSelected;
 
         public RssListPageViewModel()
@@ -32,6 +31,7 @@ namespace RssReader.ViewModels
         private object SearchExecute(string s)
         {
             list = model.search(s);
+            PropertyChanged?.Invoke(this,new PropertyChangedEventArgs("List"));
             return null;
         }
 

@@ -25,6 +25,7 @@ namespace DAL
             var settings = new ConnectionSettings(
                 node
             );
+            settings.DefaultIndex("my-application");
 
             client = new ElasticClient(settings);
         }
@@ -39,35 +40,35 @@ namespace DAL
             QueryContainer query = new TermQuery
             {
                 Field = "Title",
-                Value = title
+                Value = title,
             };
 
             var searchRequest = new SearchRequest
             {
-                Query = query
+                Query = query,
+                From = 100,
             };
 
             var result =  client.Search<RSSObject>(searchRequest);
             return result.Documents.ToList();
         }
 
-        public bool saveRSS(RSSObject obj)
+        public void saveRSSAsync(RSSObject obj)
         {
             try
             {
-                client.Index(obj);
-                return true;
+                client.IndexAsync(obj);
             }
             catch (Exception e)
             {
-                return false;
+                Console.WriteLine(e.Message);
             }
 
         }
 
         public List<RSSObject> getListFromFeed()
         {
-            return XmlHandler.getFeed(XmlHandler.YnetLink);
+            return XmlHandler.getFeed(XmlHandler.YnetLink).Result;
         }
     }
 }

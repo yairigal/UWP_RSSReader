@@ -19,5 +19,7 @@ namespace DAL
 
         List<RSSObject> getListFromFeed();
 
+        void saveRssListAsync(List<RSSObject> obj);
+
     }
 }

@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using BE;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -19,9 +20,11 @@ namespace RssReader.Views
 {
     public sealed partial class RssItem : UserControl
     {
-        public RssItem()
+        public RSSObject CurrentRss { set; get; }
+        public RssItem(RSSObject obj)
         {
             this.InitializeComponent();
+            this.DataContext = CurrentRss = obj;
         }
     }
 }

@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModels="using:RssReader.ViewModels"
     x:Class="RssReader.Views.RssListPage"
-    mc:Ignorable="d" Height="711" Width="866">
+    mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -19,13 +19,13 @@
         <TextBlock Text="Ynet - חדשות" FontSize="15" Grid.Row="0"/>
         <ScrollViewer Grid.Row="1">
             <ListBox ItemsSource="{Binding Path=List ,Mode=TwoWay}" SelectedItem="{Binding CurrentItemSelected, Mode=TwoWay}" ScrollViewer.VerticalScrollBarVisibility="Visible">
-                <ListBox.ItemTemplate>
+                <!--<ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding Title}" />
                         </StackPanel>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
+                </ListBox.ItemTemplate>-->
             </ListBox>
         </ScrollViewer>
     </Grid>

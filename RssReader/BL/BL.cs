@@ -17,12 +17,9 @@ namespace PL
 
         public void saveRssObjects(ObservableCollection<RSSObject> list)
         {
-            Task.Run(() =>
-            {
-                foreach (var rss in list)
-                    dal.saveRSSAsync(rss);
-
-            });
+            Task.Run(() =>            
+                dal.saveRssListAsync(list.ToList())
+            );
 
         }
 

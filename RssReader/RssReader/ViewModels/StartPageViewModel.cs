@@ -67,7 +67,7 @@ namespace PL.ViewModels
         {
             get { return navigateToPage ?? (navigateToPage = new Command(() =>
             {
-                Navigate(new YnetPage(CurrentArticle?.Link));
+                Navigate(YnetPage.getInstance(CurrentArticle?.Link));
                 ListPage = new RssListPage();
             }, () => true)); }
         }
@@ -98,7 +98,7 @@ namespace PL.ViewModels
             set
             {
                 currentArticle = value;
-                Navigate(new YnetPage(currentArticle.Link));
+                Navigate(YnetPage.getInstance(currentArticle.Link));
             }
         }
 
@@ -117,7 +117,7 @@ namespace PL.ViewModels
             this.model = new StartPageModel(this);
             isPaneOpen = false;
             articleSelected += onArticleSelected;
-            currentDisplayedPage = new YnetPage("");
+            currentDisplayedPage = YnetPage.getInstance("");
         }
         private object onArticleSelected(RSSObject obRssObject)
         {

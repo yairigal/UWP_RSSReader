@@ -11,6 +11,6 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ProgressRing x:Name="loadingAnimation" IsActive="{Binding Path=IsLoadingShown}" Height="179" Margin="471,440,573,101" Width="236">
         </ProgressRing>
-        <WebView x:Name="webView"   Source="{Binding Path=Link ,Mode=TwoWay}"/>
+        <WebView x:Name="webView" Source="{Binding Path=Link ,Mode=TwoWay}"/>
     </Grid>
 </Page>

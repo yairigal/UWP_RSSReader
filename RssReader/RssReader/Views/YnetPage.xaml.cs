@@ -23,7 +23,18 @@ namespace RssReader.Views
     /// </summary>
     public sealed partial class YnetPage : Page
     {
-        public YnetPage(string currentArticleLink)
+        private static YnetPage instance = null;
+
+        public static YnetPage getInstance(string currentArticle)
+        {
+            if(instance == null)
+                instance = new YnetPage(currentArticle);
+            else
+                instance.DataContext = new YnetPageViewModel(currentArticle);
+            return instance;
+        }
+
+        protected YnetPage(string currentArticleLink)
         {
             this.InitializeComponent();
             this.DataContext = new YnetPageViewModel(currentArticleLink);

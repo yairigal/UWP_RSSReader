@@ -15,6 +15,11 @@ namespace DAL
 
         public DAL()
         {
+            for (int i = 1; i <= 100000; i++)
+                if (LocalUri.GetHashCode() != LocalUri.GetHashCode())
+                    Console.WriteLine("found it");
+
+
             InitElasticClient();
         }
 
@@ -37,27 +42,34 @@ namespace DAL
 
         public List<RSSObject> getRss(string title)
         {
-            WildcardQuery q = new WildcardQuery()
-            {
-                Field = "title",
-                Value = "*"+title.Reverse()+"*",
-            };
+            #region Comments
+            /*
+           //WildcardQuery q = new WildcardQuery()
+           //{
+           //    Field = "title",
+           //    Value = "*" + title.Reverse() + "*",
+           //};
 
-            QueryContainer query = new TermQuery
-            {
-                Field = "Title",
-                Value = title,
-            };
+           //QueryContainer query = new TermQuery
+           //{
+           //    Field = "Title",
+           //    Value = title,
+           //};
 
-            RawQuery query2 = new RawQuery(@"GET _search?size=200{" + "query" + ": {" + "wildcard" + ": { " + "title" + ": {" + "value" + ":" + "*" + title + "*" + "}}}}");
+           //RawQuery query2 = new RawQuery(@"GET _search?size=200{" + "query" + ": {" + "wildcard" + ": { " + "title" + ": {" + "value" + ":" + "*" + title + "*" + "}}}}");
 
-            var searchRequest = new SearchRequest
-            {
-                Query = query2,
-                Size = 200
-            };
+           //var searchRequest = new SearchRequest
+           //{
+           //    Query = query2,
+           //    Size = 200
+           //};
+           */
 
-            var result =  client.Search<RSSObject>(s=>s.Query(s1=>s1.Wildcard(s2=>s2.Field(s3=>s3.Title).Value("*"+title+"*"))));
+
+            #endregion
+
+
+            var result = client.Search<RSSObject>(s => s.Query(s1 => s1.Wildcard(s2 => s2.Field(s3 => s3.Title).Value("*" + title + "*"))));
             return result.Documents.ToList();
         }
 
@@ -65,7 +77,7 @@ namespace DAL
         {
             try
             {
-                client.IndexAsync(obj,r=>r.Id(obj.Link.GetHashCode()));
+                client.Index(obj, r => r.Id(obj.Title));
             }
             catch (Exception e)
             {
@@ -77,6 +89,13 @@ namespace DAL
         public List<RSSObject> getListFromFeed()
         {
             return XmlHandler.getFeed(XmlHandler.YnetLink).Result;
+        }
+
+        public async void saveRssListAsync(List<RSSObject> obj)
+        {
+            foreach (var rss in obj)
+                saveRSSAsync(rss);
+
         }
     }
 }

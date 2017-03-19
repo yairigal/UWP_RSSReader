@@ -11,11 +11,15 @@ namespace DAL
     {
         //CRUD = create , read , update , delete
         //read
-        RSSObject getRss();
+        List<RSSObject> getRss(string title);
         //create
-        bool saveRSS(RSSObject obj);
+        void saveRSSAsync(RSSObject obj);
 
         bool deleteRSS(RSSObject obj);
+
+        List<RSSObject> getListFromFeed();
+
+        void saveRssListAsync(List<RSSObject> obj);
 
     }
 }

@@ -115,6 +115,10 @@
     <EmbeddedResource Include="Properties\BL.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BE\BE.csproj">
+      <Project>{A5932D91-6006-45CD-A9FF-1106DB1BFE76}</Project>
+      <Name>BE</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{6b174acd-9b1e-40ad-8d9d-11c948498727}</Project>
       <Name>DAL</Name>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PL.Views;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,7 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace RssReader
+namespace PL
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -72,7 +73,7 @@ namespace RssReader
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(StartPage));
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
